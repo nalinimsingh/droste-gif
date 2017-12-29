@@ -58,13 +58,13 @@ ymax = imsize[0]
 xmax = imsize[1]
 
 # Generate images
-for i in range(n):
-    y1_new = int(y1*(i+1)/split)
-    y2_new = int(ymax-(ymax-y2)*(i+1)/split)
-    x1_new = int(x1*(i+1)/split)
-    x2_new = int(xmax-(xmax-x2)*(i+1)/split)
-    image = misc.imresize(image[y1_new:y2_new,x1_new:x2_new,:],imsize)
+for i in range(1,n+1):
+    y1_new = int(y1*i/n)
+    y2_new = int(ymax-(ymax-y2)*i/n)
+    x1_new = int(x1*i/n)
+    x2_new = int(xmax-(xmax-x2)*i/n)
+    new_image = misc.imresize(image[y1_new:y2_new,x1_new:x2_new,:],imsize)
 
-    images.append(image)
+    images.append(new_image)
 
 imageio.mimsave(args.output_path, images)
